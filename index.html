@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LUMIÈRE | Sérum Facial Premium</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --primary: #ff7eb9;
+      --secondary: #ffafcc;
+      --accent: #cdb4db;
+      --dark: #2a2a2a;
+      --light: #fff9fb;
+      --gray: #f5f5f5;
+      --transition: all 0.3s ease;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background-color: var(--light);
+      color: var(--dark);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    /* Header Styles */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      padding: 20px 0;
+      background-color: rgba(255, 255, 255, 0.95);
+      box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
+      z-index: 1000;
+      transition: var(--transition);
+    }
+
+    .header-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--primary);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+    }
+
+    .logo i {
+      margin-right: 10px;
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+    }
+
+    nav ul li {
+      margin-left: 30px;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      color: var(--dark);
+      font-weight: 500;
+      font-size: 16px;
+      transition: var(--transition);
+      position: relative;
+    }
+
+    nav ul li a:hover {
+      color: var(--primary);
+    }
+
+    nav ul li a::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background-color: var(--primary);
+      transition: var(--transition);
+    }
+
+    nav ul li a:hover::after {
+      width: 100%;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+    }
+
+    .header-actions a {
+      margin-left: 20px;
+      color: var(--dark);
+      font-size: 18px;
+      transition: var(--transition);
+    }
+
+    .header-actions a:hover {
+      color: var(--primary);
+    }
+
+    .cart-icon {
+      position: relative;
+    }
+
+    .cart-count {
+      position: absolute;
+      top: -8px;
+      right: -8px;
+      background-color: var(--primary);
+      color: white;
+      font-size: 10px;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Hero Section */
+    .hero {
+      padding: 150px 0 100px;
+      background: linear-gradient(135deg, var(--light) 0%, #ffeef4 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-content {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .hero-text {
+      flex: 1;
+      padding-right: 50px;
+      animation: fadeInUp 1s ease;
+    }
+
+    .hero-text h1 {
+      font-size: 3.5rem;
+      margin-bottom: 20px;
+      line-height: 1.2;
+      color: var(--dark);
+    }
+
+    .hero-text h1 span {
+      color: var(--primary);
+    }
+
+    .hero-text p {
+      font-size: 1.2rem;
+      margin-bottom: 30px;
+      color: #555;
+      max-width: 600px;
+    }
+
+    .hero-image {
+      flex: 1;
+      position: relative;
+      animation: float 6s ease-in-out infinite;
+    }
+
+    .hero-image img {
+      max-width: 100%;
+      display: block;
+      margin: 0 auto;
+      filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.1));
+    }
+
+    .price-tag {
+      background: var(--primary);
+      color: white;
+      padding: 15px 25px;
+      border-radius: 50px;
+      display: inline-flex;
+      align-items: center;
+      font-weight: 700;
+      font-size: 1.5rem;
+      margin-bottom: 30px;
+      box-shadow: 0 10px 20px rgba(255, 126, 185, 0.3);
+    }
+
+    .price-tag .old-price {
+      text-decoration: line-through;
+      font-size: 1rem;
+      margin-right: 10px;
+      opacity: 0.7;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 15px 35px;
+      background: var(--primary);
+      color: white;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1.1rem;
+      transition: var(--transition);
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 5px 15px rgba(255, 126, 185, 0.4);
+    }
+
+    .btn:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(255, 126, 185, 0.5);
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 2px solid var(--primary);
+      color: var(--primary);
+      margin-left: 15px;
+    }
+
+    .btn-outline:hover {
+      background: var(--primary);
+      color: white;
+    }
+
+    /* Benefits Section */
+    .benefits {
+      padding: 100px 0;
+      background-color: white;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      color: var(--dark);
+    }
+
+    .section-subtitle {
+      text-align: center;
+      color: #777;
+      max-width: 700px;
+      margin: 0 auto 60px;
+      font-size: 1.1rem;
+    }
+
+    .benefits-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 40px;
+      margin-top: 50px;
+    }
+
+    .benefit-card {
+      text-align: center;
+      padding: 40px 30px;
+      border-radius: 20px;
+      background: var(--light);
+      transition: var(--transition);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    }
+
+    .benefit-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    .benefit-icon {
+      width: 80px;
+      height: 80px;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 25px;
+      color: white;
+      font-size: 30px;
+    }
+
+    .benefit-card h3 {
+      margin-bottom: 15px;
+      font-size: 1.5rem;
+    }
+
+    /* How to Use */
+    .how-to-use {
+      padding: 100px 0;
+      background: linear-gradient(to bottom, white 0%, var(--light) 100%);
+    }
+
+    .steps-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+      margin-top: 50px;
+    }
+
+    .step-card {
+      flex: 1;
+      min-width: 250px;
+      max-width: 350px;
+      text-align: center;
+      padding: 40px 30px;
+      background: white;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .step-number {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      font-size: 3rem;
+      font-weight: 800;
+      color: rgba(205, 180, 219, 0.2);
+      line-height: 1;
+    }
+
+    .step-card h3 {
+      margin: 20px 0 15px;
+      font-size: 1.5rem;
+    }
+
+    /* Testimonials */
+    .testimonials {
+      padding: 100px 0;
+      background-color: var(--gray);
+    }
+
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      margin-top: 50px;
+    }
+
+    .testimonial-card {
+      background: white;
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    }
+
+    .testimonial-header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .testimonial-avatar {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-right: 15px;
+    }
+
+    .testimonial-rating {
+      color: #ffc107;
+      font-size: 1.2rem;
+      margin-top: 5px;
+    }
+
+    /* CTA Section */
+    .cta {
+      padding: 100px 0;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+      color: white;
+      text-align: center;
+    }
+
+    .cta h2 {
+      font-size: 2.8rem;
+      margin-bottom: 20px;
+    }
+
+    .cta p {
+      max-width: 700px;
+      margin: 0 auto 40px;
+      font-size: 1.2rem;
+      opacity: 0.9;
+    }
+
+    .btn-light {
+      background: white;
+      color: var(--primary);
+    }
+
+    .btn-light:hover {
+      box-shadow: 0 10px 25px rgba(255, 255, 255, 0.3);
+    }
+
+    /* Footer */
+    footer {
+      background: var(--dark);
+      color: white;
+      padding: 70px 0 30px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 40px;
+      margin-bottom: 50px;
+    }
+
+    .footer-col h3 {
+      font-size: 1.5rem;
+      margin-bottom: 25px;
+      position: relative;
+    }
+
+    .footer-col h3::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      width: 50px;
+      height: 3px;
+      background: var(--primary);
+    }
+
+    .footer-col ul {
+      list-style: none;
+    }
+
+    .footer-col ul li {
+      margin-bottom: 15px;
+    }
+
+    .footer-col ul li a {
+      color: #ccc;
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    .footer-col ul li a:hover {
+      color: var(--primary);
+      padding-left: 5px;
+    }
+
+    .social-links {
+      display: flex;
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    .social-links a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.1);
+      color: white;
+      transition: var(--transition);
+    }
+
+    .social-links a:hover {
+      background: var(--primary);
+      transform: translateY(-5px);
+    }
+
+    .copyright {
+      text-align: center;
+      padding-top: 30px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      color: #aaa;
+      font-size: 0.9rem;
+    }
+
+    /* Animations */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(0px);
+      }
+
+      50% {
+        transform: translateY(-20px);
+      }
+
+      100% {
+        transform: translateY(0px);
+      }
+    }
+
+    /* Responsive Design */
+    @media (max-width: 992px) {
+      .hero-content {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .hero-text {
+        padding-right: 0;
+        margin-bottom: 50px;
+      }
+
+      .hero-text p {
+        margin: 0 auto 30px;
+      }
+
+      .hero-buttons {
+        justify-content: center;
+      }
+    }
+
+    @media (max-width: 768px) {
+      nav {
+        display: none;
+      }
+
+      .menu-toggle {
+        display: block;
+        font-size: 24px;
+        cursor: pointer;
+      }
+
+      .hero-text h1 {
+        font-size: 2.8rem;
+      }
+
+      .section-title {
+        font-size: 2rem;
+      }
+    }
+
+    .menu-toggle {
+      display: none;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Header -->
+  <header>
+    <div class="container header-container">
+      <a href="#" class="logo">
+        <i class="fas fa-spa"></i> LUMIÈRE
+      </a>
+
+      <nav>
+        <ul>
+          <li><a href="#">Início</a></li>
+          <li><a href="#">Produtos</a></li>
+          <li><a href="#">Benefícios</a></li>
+          <li><a href="#">Como Usar</a></li>
+          <li><a href="#">Depoimentos</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <a href="#"><i class="fas fa-search"></i></a>
+        <a href="#"><i class="fas fa-user"></i></a>
+        <a href="#" class="cart-icon">
+          <i class="fas fa-shopping-bag"></i>
+          <span class="cart-count">3</span>
+        </a>
+        <a href="#" class="menu-toggle"><i class="fas fa-bars"></i></a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container hero-content">
+      <div class="hero-text">
+        <div class="price-tag">
+          <span class="old-price">R$ 199,90</span>
+          R$ 149,90
+        </div>
+        <h1>Sérum Facial <span>Antioxidante</span> com Vitamina C</h1>
+        <p>Revitalize sua pele com nossa fórmula inovadora. Combate os sinais de envelhecimento, uniformiza o tom da
+          pele e proporciona um brilho natural e saudável.</p>
+        <div class="hero-buttons">
+          <a href="#" class="btn">Comprar Agora</a>
+          <a href="#" class="btn btn-outline">Saiba Mais</a>
+        </div>
+      </div>
+      <div class="hero-image">
+        <img src="https://images.unsplash.com/photo-1596462502278-27bfdc403348?q=80&w=800&auto=format&fit=crop"
+          alt="Sérum Facial LUMIÈRE">
+      </div>
+    </div>
+  </section>
+
+  <!-- Benefits Section -->
+  <section class="benefits">
+    <div class="container">
+      <h2 class="section-title">Benefícios Transformadores</h2>
+      <p class="section-subtitle">Descubra como nosso sérum premium pode revolucionar sua rotina de cuidados com a pele
+      </p>
+
+      <div class="benefits-grid">
+        <div class="benefit-card">
+          <div class="benefit-icon">
+            <i class="fas fa-sun"></i>
+          </div>
+          <h3>Proteção Solar</h3>
+          <p>Proteção contra danos causados pelos raios UV e poluição ambiental, prevenindo o envelhecimento precoce.
+          </p>
+        </div>
+
+        <div class="benefit-card">
+          <div class="benefit-icon">
+            <i class="fas fa-seedling"></i>
+          </div>
+          <h3>Hidratação Intensa</h3>
+          <p>Hidratação profunda que dura até 24 horas, deixando a pele macia, suave e radiante.</p>
+        </div>
+
+        <div class="benefit-card">
+          <div class="benefit-icon">
+            <i class="fas fa-heart"></i>
+          </div>
+          <h3>Antioxidante Poderoso</h3>
+          <p>Combate os radicais livres, reduzindo linhas finas e melhorando a elasticidade da pele.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How to Use Section -->
+  <section class="how-to-use">
+    <div class="container">
+      <h2 class="section-title">Como Usar</h2>
+      <p class="section-subtitle">Siga estes simples passos para obter os melhores resultados</p>
+
+      <div class="steps-container">
+        <div class="step-card">
+          <div class="step-number">1</div>
+          <i class="fas fa-hand-holding-water" style="font-size: 40px; color: var(--accent);"></i>
+          <h3>Limpeza</h3>
+          <p>Lave o rosto com um limpador suave e seque com uma toalha limpa.</p>
+        </div>
+
+        <div class="step-card">
+          <div class="step-number">2</div>
+          <i class="fas fa-tint" style="font-size: 40px; color: var(--accent);"></i>
+          <h3>Aplicação</h3>
+          <p>Aplique 2-3 gotas do sérum em todo o rosto e pescoço com movimentos suaves e ascendentes.</p>
+        </div>
+
+        <div class="step-card">
+          <div class="step-number">3</div>
+          <i class="fas fa-sun" style="font-size: 40px; color: var(--accent);"></i>
+          <h3>Proteção</h3>
+          <p>Após absorção, aplique protetor solar para proteção diária contra os raios UV.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section class="testimonials">
+    <div class="container">
+      <h2 class="section-title">O Que Nossas Clientes Dizem</h2>
+      <p class="section-subtitle">Mais de 5.000 clientes satisfeitas em todo o Brasil</p>
+
+      <div class="testimonials-grid">
+        <div class="testimonial-card">
+          <div class="testimonial-header">
+            <img src="https://randomuser.me/api/portraits/women/32.jpg" alt="Cliente" class="testimonial-avatar">
+            <div>
+              <h3>Ana Carolina</h3>
+              <div class="testimonial-rating">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+              </div>
+            </div>
+          </div>
+          <p>"Depois de apenas duas semanas usando o sérum, minhas manchas escuras começaram a clarear visivelmente.
+            Minha pele nunca esteve tão radiante!"</p>
+        </div>
+
+        <div class="testimonial-card">
+          <div class="testimonial-header">
+            <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Cliente" class="testimonial-avatar">
+            <div>
+              <h3>Juliana Mendes</h3>
+              <div class="testimonial-rating">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star-half-alt"></i>
+              </div>
+            </div>
+          </div>
+          <p>"A textura é leve e absorve rapidamente. Adoro como minha pele fica hidratada sem ser oleosa.
+            Definitivamente vale o investimento!"</p>
+        </div>
+
+        <div class="testimonial-card">
+          <div class="testimonial-header">
+            <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Cliente" class="testimonial-avatar">
+            <div>
+              <h3>Fernanda Costa</h3>
+              <div class="testimonial-rating">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+              </div>
+            </div>
+          </div>
+          <p>"Minhas linhas de expressão diminuíram significativamente e minha pele ganhou um brilho saudável. Este
+            produto mudou minha rotina de skincare!"</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="cta">
+    <div class="container">
+      <h2>Transforme Sua Pele Hoje</h2>
+      <p>Junte-se a milhares de mulheres que já descobriram o segredo para uma pele radiante e jovem</p>
+      <a href="#" class="btn btn-light">Comprar Agora</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <h3>LUMIÈRE</h3>
+          <p>Sua jornada para uma pele radiante começa aqui. Produtos premium com ingredientes naturais e resultados
+            comprovados.</p>
+          <div class="social-links">
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-tiktok"></i></a>
+            <a href="#"><i class="fab fa-pinterest"></i></a>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h3>Links Rápidos</h3>
+          <ul>
+            <li><a href="#">Sobre Nós</a></li>
+            <li><a href="#">Nossos Produtos</a></li>
+            <li><a href="#">Blog</a></li>
+            <li><a href="#">Perguntas Frequentes</a></li>
+            <li><a href="#">Política de Privacidade</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h3>Contato</h3>
+          <ul>
+            <li><i class="fas fa-envelope"></i> contato@lumiere.com.br</li>
+            <li><i class="fas fa-phone"></i> (11) 99999-9999</li>
+            <li><i class="fas fa-map-marker-alt"></i> São Paulo, SP</li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h3>Newsletter</h3>
+          <p>Inscreva-se para receber nossas novidades e promoções exclusivas.</p>
+          <form>
+            <input type="email" placeholder="Seu melhor e-mail"
+              style="padding: 12px; width: 100%; border-radius: 30px; border: none; margin-bottom: 10px;">
+            <button class="btn" style="width: 100%;">Inscrever</button>
+          </form>
+        </div>
+      </div>
+
+      <div class="copyright">
+        &copy; 2023 LUMIÈRE Cosméticos. Todos os direitos reservados.
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Header scroll effect
+    window.addEventListener('scroll', function () {
+      const header = document.querySelector('header');
+      if (window.scrollY > 50) {
+        header.style.padding = '10px 0';
+        header.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.1)';
+      } else {
+        header.style.padding = '20px 0';
+        header.style.boxShadow = '0 2px 15px rgba(0, 0, 0, 0.05)';
+      }
+    });
+
+    // Animation on scroll
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.animation = 'fadeInUp 1s ease forwards';
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.benefit-card, .step-card, .testimonial-card').forEach(card => {
+      card.style.opacity = '0';
+      observer.observe(card);
+    });
+  </script>
+</body>
+
+</html>
